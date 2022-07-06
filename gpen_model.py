@@ -652,7 +652,7 @@ class KernelPredictor(nn.Module):
 
         self.pointwise = nn.Sequential(
             ConvLayer(in_channel = style_channels,
-            out_channel = in_channels * out_channels // n_groups,
+            out_channel = in_channels * out_channels // self.n_groups,
             kernel_size = 1,
             activate = False,
             downsample = False,
@@ -827,7 +827,7 @@ class FullGenerator(nn.Module):
         self.hq_convs = nn.ModuleList()
 
         self.hq_convs.append( Adablocks(in_channels=in_channel, 
-        mid_channels = in_channel*2, 
+        mid_channels = in_channel, 
         out_channels = in_channel,
         n_groups = in_channel//groups_div, 
         style_channels = style_dim, 
